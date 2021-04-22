@@ -1,0 +1,113 @@
+[
+  {
+    "name": "Charger",
+    "description": "some long text to make it look like a description",
+    "brand": "Xiaomi",
+    "imageUrl": "http://localhost:3001/profile.png",
+    "price": 90,
+    "id": "1rzgsrjk1sknogrpmj",
+    "reviews": [
+      {
+        "comment": "Random review 2",
+        "rate": 3,
+        "productId": "1rzgsrjk1sknogrpmj",
+        "_id": "1rzgsrj7g8knoitlxz",
+        "createdAt": "2021-04-19T11:34:38.423Z"
+      },
+      {
+        "comment": "Random review for second product",
+        "rate": 3,
+        "productId": "1rzgsrjk1sknogrpmj",
+        "_id": "1rzgsrj7g8knoivu6f",
+        "createdAt": "2021-04-19T11:36:22.407Z"
+      },
+      {
+        "comment": "Random review 2",
+        "rate": 3,
+        "productId": "1rzgsrjk1sknogrpmj",
+        "_id": "1rzgsrj7qkknoostb6",
+        "createdAt": "2021-04-19T14:21:59.010Z"
+      },
+      {
+        "comment": "Random review gvsdfgvds",
+        "rate": 3,
+        "productId": "1rzgsrjk1sknogrpmj",
+        "_id": "1rzgsrj7qkknoot2u6",
+        "createdAt": "2021-04-19T14:22:11.358Z"
+      }
+    ],
+    "updatedAt": "2021-04-19T14:22:11.359Z"
+  },
+  {
+    "name": "Latest",
+    "description": "some long text to make it look like a description",
+    "brand": "Xiaomi",
+    "imageUrl": "http://localhost:3001/profile.png",
+    "price": 909,
+    "reviews": [
+      {
+        "comment": "Random review ferfewqr",
+        "rate": 3,
+        "productId": "1rzgsrj7qkknoov0my",
+        "_id": "1rzgsrj7qkknoowceo",
+        "createdAt": "2021-04-19T14:24:43.728Z"
+      },
+      {
+        "comment": "Random review ferfewqrfqwfdwqecqwdcqw",
+        "rate": 3,
+        "productId": "1rzgsrj7qkknoov0my",
+        "_id": "1rzgsrj7qkknoowl4m",
+        "createdAt": "2021-04-19T14:24:55.030Z"
+      }
+    ],
+    "id": "1rzgsrj7qkknoov0my",
+    "createdAt": "2021-04-19T14:23:41.818Z",
+    "updatedAt": "2021-04-19T14:24:55.030Z"
+  },
+  {
+    "name": "s bfs",
+    "description": "sdbds",
+    "brand": "sdbdb",
+    "price": "23",
+    "category": "Drama",
+    "id": "1rzgsrjfxsknopg4u2",
+    "reviews": [],
+    "createdAt": "2021-04-19T14:40:07.034Z",
+    "updatedAt": "2021-04-19T14:44:37.514Z",
+    "imageUrl": "http://localhost:3001/maxresdefault.jpg"
+  },
+  {
+    "name": "Linkedin",
+    "description": "wsdfasdvasd",
+    "brand": "Orzly",
+    "price": "23",
+    "category": "Drama",
+    "id": "1rzgsrjebkknordo46",
+    "reviews": [],
+    "createdAt": "2021-04-19T15:34:11.286Z",
+    "updatedAt": "2021-04-19T15:34:11.286Z"
+  },
+  {
+    "name": "Linkedin",
+    "description": "wsdfasdvasd",
+    "brand": "Orzly",
+    "price": "23",
+    "category": "Drama",
+    "id": "1rzgsrjebkknorda43",
+    "reviews": [],
+    "createdAt": "2021-04-19T15:33:53.139Z",
+    "updatedAt": "2021-04-19T15:34:11.300Z",
+    "imageUrl": "http://localhost:3001/maxresdefault.jpg"
+  },
+  {
+    "name": "gdfgsdfvsdf",
+    "description": "some long text to make it look like a description",
+    "brand": "Xiaomi",
+    "imageUrl": "http://localhost:3001/profile.png",
+    "price": 90,
+    "reviews": [],
+    "id": "1rzgsrj7qkknoomw33",
+    "createdAt": "2021-04-19T14:17:22.671Z",
+    "updatedAt": "2021-04-19T15:43:53.423Z"
+  }
+]
