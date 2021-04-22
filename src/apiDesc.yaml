@@ -1,0 +1,208 @@
+openapi: 3.0.1
+info:
+  title: AMarketplace API
+  description: This is a documentation practice
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: local server
+  #- url: https://strive-heroku-test.herokuapp.com/
+  #  description: Deployed server
+tags:
+  - name: products
+    description: Operations about products
+  - name: review
+    description: Operations about product's review
+paths:
+  /products:
+    get:
+      tags:
+        - products
+      summary: Retrieve a list of products.
+      description: Reviews included inside the product's data
+      parameters:
+        - in: query
+          name: category
+          schema:
+            type: string
+          description: Filter products list by category
+      responses:
+        "200": # status code
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "500":
+          $ref: "#/components/responses/GenericServerError"
+    post:
+      tags:
+        - products
+      description: Adds a new product
+      requestBody:
+        description: The object details
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201": # status code
+          description: The ID of the newly created products
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/BadRequest"
+  /products/{id}:
+    get:
+      tags:
+        - products
+      summary: Returns a product with the same product id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the Book to retrieve
+      responses:
+        "200": # status code
+          description: The single product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      tags:
+        - products
+      description: Update an existing product
+      summary: Update
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the Product to update
+      requestBody:
+        description: Fields to update
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "200": # status code
+          description: A list of product
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      tags:
+        - products
+      description: Delete a specific Products by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the Products to delete
+      responses:
+        "200": # status code
+          description: The single Products deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /products/{id}/upload:
+    post:
+      tags:
+        - products
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Uploading an image to a selected product (by the id)
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+      responses:
+        "200": # status code
+          description: Ok
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+components:
+  responses:
+    NotFound:
+      description: The specific resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    BadRequest:
+      description: Some problems with your request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"            
+    Unauthorized:
+      description: Bearer token missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    GenericServerError:
+      description: A problem on the server occurred
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"            
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        imageUrl:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        reviews:
+          type: array
+          items: 
+            type: object
+              
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string

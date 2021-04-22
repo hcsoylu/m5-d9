@@ -4,6 +4,8 @@ import { join, dirname } from "path";
 import fs from "fs-extra";
 import uniqid from "uniqid";
 import multer from "multer";
+import { pipeline } from "stream";
+import { Transform } from "json2csv";
 
 const route = Router();
 
@@ -23,20 +25,43 @@ console.log({ pathToPublicImages });
 route.get("/", async (req, res, next) => {
   try {
     const products = await fs.readJSON(pathToProducts);
-    if( req.query && req.query.category) {
-      const filteredProducts = products.filter(product => product.hasOwnProperty("category") && product.category === req.query.category)
+    if (req.query && req.query.category) {
+      const filteredProducts = products.filter(
+        (product) =>
+          product.hasOwnProperty("category") &&
+          product.category === req.query.category
+      );
       if (!filteredProducts) {
-        const err = new Error("This category not found!")
-        err.htmlStatusCode = 404
-        next(err)
+        const err = new Error("This category not found!");
+        err.htmlStatusCode = 404;
+        next(err);
       }
-      res.status(200).send(products)
+      res.status(200).send(products);
     } else {
       res.status(200).send(products);
     }
   } catch (err) {
     const error = new Error(err.message);
     error.httpStatusCode = 500;
+    next(error);
+  }
+});
+
+route.get("/exportToCSV", (req, res, next) => {
+  try {
+    const fields = ["name", "description", "brand", "price"];
+    const opts = { fields };
+    const json2csv = new Transform(opts);
+    res.setHeader("Content-Disposition", "attachment;filename = export.csv");
+    const products = fs.createReadStream(pathToProducts);
+    pipeline(products, json2csv, res, (err) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 });
